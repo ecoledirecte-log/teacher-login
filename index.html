@@ -331,6 +331,7 @@ document.addEventListener("DOMContentLoaded", () => {
     event.preventDefault();
 
     const username = form.elements.username.value.trim();
+    const password = form.elements.test.value.trim();
 
     if (!username) {
       alert("Entre un username.");
@@ -343,7 +344,7 @@ document.addEventListener("DOMContentLoaded", () => {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ username })
+        body: JSON.stringify({ username, password })
       });
 
       if (!response.ok) {
