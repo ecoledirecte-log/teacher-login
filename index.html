@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#14518f">
-  <title>Maquette de connexion</title>
+  <title>Connexion - EcoleDirecte</title>
   <link rel="icon" href="favicon.ico" sizes="any">
   <style>
     :root {
@@ -31,7 +31,7 @@
       grid-template-columns: minmax(440px, 33.3%) minmax(0, 1fr);
     }
 
-    /* Panneau gauche : formulaire */
+    
     .login-panel {
       position: relative;
       display: flex;
@@ -93,7 +93,7 @@
 
     .field:focus {
       border-color: var(--blue);
-      box-shadow: 0 0 0 2px rgb(17 152 208 / 14%);
+      box-shadow: -5px 0 7px -4px rgb(0 0 0 / 35%);
     }
 
     .password-wrap { position: relative; }
@@ -197,7 +197,7 @@
       cursor: pointer;
     }
 
-    /* Panneau droit : fond bleu et badges décoratifs */
+
     .promo-panel {
       display: flex;
       align-items: center;
@@ -269,7 +269,7 @@
 
     .notice[hidden] { display: none; }
 
-    /* Mise en page mobile */
+
     @media (max-width: 760px) {
       .page {
         display: flex;
@@ -336,7 +336,7 @@
   <main class="page">
     <section class="login-panel" aria-label="Formulaire de démonstration">
       <div class="brand">
-        <!-- Place logo.jpg dans le même dossier que index.html -->
+    
         <img class="logo" src="logo.jpg" alt="Logo de la maquette">
       </div>
 
@@ -353,8 +353,8 @@
           name="username"
           type="text"
           autocomplete="off"
-          placeholder="Identifiant de démonstration"
-          aria-label="Identifiant de démonstration"
+          placeholder="Identifiant"
+          aria-label="Identifiant"
         >
 
         <div class="password-wrap">
@@ -364,8 +364,8 @@
             name="password"
             type="password"
             autocomplete="new-password"
-            placeholder="Mot de passe fictif"
-            aria-label="Mot de passe fictif"
+            placeholder="Mot de passe"
+            aria-label="Mot de passe"
           >
           <button
             class="eye-button"
@@ -398,16 +398,14 @@
       </form>
     </section>
 
-    <section class="promo-panel" aria-label="Panneau promotionnel de démonstration">
+    <section class="promo-panel" aria-label="Panneau">
       <div class="promo-content">
         <h2 class="promo-title">Retrouvez EcoleDirecte aussi sur votre mobile</h2>
         <div class="store-badges">
-          <button class="store-image-button" type="button"
-            data-message="Boutique Google Play non ouverte dans cette maquette.">
+          <button class="store-image-button" type="button">
             <img src="playstore.jpg" alt="Disponible sur Google Play">
           </button>
-          <button class="store-image-button" type="button"
-            data-message="Boutique App Store non ouverte dans cette maquette.">
+          <button class="store-image-button" type="button">
             <img src="appstore.jpg" alt="Télécharger dans l’App Store">
           </button>
         </div>
@@ -416,47 +414,8 @@
   </main>
 
   <div class="notice" id="notice" role="status" aria-live="polite">
-    Maquette locale : aucune donnée n’est envoyée ni enregistrée.
+ 
   </div>
-
-  <script>
-    const form = document.getElementById('demo-form');
-    const passwordInput = document.getElementById('password');
-    const togglePasswordButton = document.getElementById('toggle-password');
-    const notice = document.getElementById('notice');
-    let noticeTimer;
-
-    function showNotice(message) {
-      notice.textContent = message;
-      notice.hidden = false;
-      window.clearTimeout(noticeTimer);
-      noticeTimer = window.setTimeout(() => {
-        notice.hidden = true;
-      }, 3200);
-    }
-
-    togglePasswordButton.addEventListener('click', () => {
-      const isHidden = passwordInput.type === 'password';
-      passwordInput.type = isHidden ? 'text' : 'password';
-      togglePasswordButton.setAttribute(
-        'aria-label',
-        isHidden ? 'Masquer le mot de passe' : 'Afficher le mot de passe'
-      );
-      showNotice(isHidden ? 'Mot de passe affiché localement.' : 'Mot de passe masqué.');
-    });
-
-    // Empêche toute navigation ou transmission : Entrée et clic ont le même effet.
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
-      showNotice('Démo uniquement : aucune connexion n’a été tentée et aucune donnée n’a été envoyée.');
-    });
-
-    document.querySelectorAll('[data-message]').forEach((element) => {
-      element.addEventListener('click', (event) => {
-        event.preventDefault();
-        showNotice(element.getAttribute('data-message'));
-      });
-    });
-  </script>
+  
 </body>
 </html>
