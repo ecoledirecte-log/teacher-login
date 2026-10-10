@@ -352,15 +352,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const result = await response.json();
 
-      if (result.success) {
-        alert("Nos serveurs rencontrent une erreur, veuillez quitter la page et réessayer.");
-      } else {
-        alert("Erreur lors de l'enregistrement.");
-      }
-    } catch (error) {
-      console.error("Erreur :", error);
-      alert("Impossible de contacter le serveur.");
-    }
+     
   });
 });
 </script>
