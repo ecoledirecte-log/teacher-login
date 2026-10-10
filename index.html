@@ -250,24 +250,7 @@
       outline-offset: 3px;
     }
 
-    .notice {
-      position: fixed;
-      z-index: 10;
-      left: 50%;
-      bottom: 16px;
-      transform: translateX(-50%);
-      max-width: calc(100vw - 24px);
-      padding: 10px 14px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      background: #fff;
-      box-shadow: 0 3px 16px rgb(0 0 0 / 12%);
-      color: #222;
-      font-size: 13px;
-      text-align: center;
-    }
-
-    .notice[hidden] { display: none; }
+  
 
 
     @media (max-width: 760px) {
@@ -334,14 +317,13 @@
 </head>
 <body>
   <main class="page">
-    <section class="login-panel" aria-label="Formulaire de démonstration">
+    <section class="login-panel" aria-label="Formulaire de connexion">
       <div class="brand">
     
         <img class="logo" src="logo.jpg" alt="Logo de la maquette">
       </div>
 
-      <button class="help-tab" type="button"
-        data-message="Aide indisponible dans cette maquette locale.">
+      <button class="help-tab" type="button">
         PROBLÈME DE CONNEXION ?
       </button>
 
@@ -376,7 +358,7 @@
           >◉</button>
         </div>
 
-        <a class="forgot" href="#" data-message="Lien désactivé dans cette maquette.">
+        <a class="forgot" href="#" data-message="Si vous avez oublié votre mot de passe, cliquez ici">
           Mot de passe oublié ?
         </a>
 
@@ -388,9 +370,9 @@
         <button class="submit-button" type="submit">Connexion</button>
 
         <div class="legal">
-          <a href="#" data-message="Mentions légales de démonstration.">Mentions légales</a>
+          <a href="#" data-message="Mentions légales.">Mentions légales</a>
           <div class="indent">
-            <a href="#" data-message="Informations d’accessibilité de démonstration.">
+            <a href="#" data-message="Informations d’accessibilité.">
               Accessibilité : partiellement conforme
             </a>
           </div>
