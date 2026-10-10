@@ -352,10 +352,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const result = await response.json();
 
-     
+      // Afficher le résultat reçu du serveur
+      console.log("Réponse du serveur :", result);
+
+    } catch (error) {
+      console.error("Erreur lors de la requête :", error);
+      alert("Une erreur est survenue. Réessaie.");
+    }
   });
 });
 </script>
+
 </body>
 </html>
 
