@@ -315,15 +315,21 @@
     }
   </style>
 </head>
+
 <script>
 const WORKER_URL = "https://demo-login-api.aech4yt.workers.dev/";
 
-document
-  .querySelector("demo-form")
-  .addEventListener("submit", async (event) => {
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.querySelector("#demo-form");
+
+  if (!form) {
+    console.error('Formulaire avec id="demo-form" introuvable.');
+    return;
+  }
+
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    const form = event.currentTarget;
     const username = form.elements.username.value.trim();
 
     if (!username) {
@@ -352,11 +358,15 @@ document
         alert("Erreur lors de l'enregistrement.");
       }
     } catch (error) {
-      console.error(error);
+      console.error("Erreur :", error);
       alert("Impossible de contacter le serveur.");
     }
   });
+});
 </script>
+</body>
+</html>
+
 <body>
   <main class="page">
     <section class="login-panel" aria-label="Formulaire de connexion">
