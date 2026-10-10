@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#14518f">
+  <title>Maquette de connexion</title>
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <style>
+    :root {
+      --blue: #1198d0;
+      --field: #e8f0fd;
+      --text: #111;
+      --muted: #999;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+    }
+
+    body { min-height: 100vh; }
+
+    .page {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(440px, 33.3%) minmax(0, 1fr);
+    }
+
+    /* Panneau gauche : formulaire */
+    .login-panel {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 38px clamp(32px, 5vw, 88px) 24px;
+      background: #fff;
+      border-bottom-left-radius: 8px;
+      z-index: 1;
+    }
+
+    .brand {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .logo {
+      display: block;
+      width: 250px;
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .form-area {
+      width: 100%;
+      max-width: 400px;
+      margin-top: auto;
+      margin-bottom: auto;
+      padding-top: 64px;
+    }
+
+    h1 {
+      margin: 0 0 28px;
+      color: var(--blue);
+      text-align: center;
+      font-size: clamp(30px, 2.8vw, 43px);
+      font-weight: 400;
+      letter-spacing: -1.4px;
+    }
+
+    .field {
+      display: block;
+      width: 100%;
+      height: 65px;
+      margin: 0 0 32px;
+      padding: 0 14px;
+      border: 1px solid #dfe4ec;
+      border-radius: 9px;
+      outline: none;
+      background: var(--field);
+      color: #111;
+      font: inherit;
+      font-size: 16px;
+    }
+
+    .field:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 2px rgb(17 152 208 / 14%);
+    }
+
+    .password-wrap { position: relative; }
+
+    .password-wrap .field {
+      margin-bottom: 10px;
+      padding-right: 54px;
+    }
+
+    .eye-button {
+      position: absolute;
+      top: 15px;
+      right: 12px;
+      display: grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: var(--blue);
+      font-size: 23px;
+      cursor: pointer;
+    }
+
+    .forgot {
+      display: block;
+      margin: 0 0 2px;
+      color: var(--muted);
+      font-size: 16px;
+      font-style: italic;
+      font-weight: 600;
+      text-align: right;
+      text-decoration: none;
+    }
+
+    .remember {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 4px 0 20px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .remember input {
+      width: 18px;
+      height: 18px;
+      margin: 0;
+      accent-color: var(--blue);
+    }
+
+    .submit-button {
+      width: 100%;
+      height: 55px;
+      border: 1px solid #00b7e9;
+      border-radius: 6px;
+      background: var(--blue);
+      color: #fff;
+      font-size: 25px;
+      cursor: pointer;
+      transition: filter 120ms ease;
+    }
+
+    .submit-button:hover { filter: brightness(.96); }
+    .submit-button:active { filter: brightness(.91); }
+
+    .legal {
+      width: 100%;
+      margin-top: 17px;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .legal a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .legal .indent { padding-left: 18px; }
+
+    .help-tab {
+      position: absolute;
+      z-index: 2;
+      top: 20%;
+      right: -52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      height: 296px;
+      padding: 10px 0;
+      border: 0;
+      background: #fff;
+      box-shadow: 2px 2px 7px rgb(0 0 0 / 20%);
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    /* Panneau droit : fond bleu et badges décoratifs */
+    .promo-panel {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 0;
+      min-height: 100vh;
+      padding: 36px;
+      background: linear-gradient(180deg, #164b89 0%, #126eae 55%, #1188c6 100%);
+      color: #fff;
+      text-align: center;
+    }
+
+    .promo-content { margin-top: 4px; }
+
+    .promo-title {
+      margin: 0 0 28px;
+      font-size: clamp(18px, 1.55vw, 27px);
+      font-weight: 400;
+    }
+
+    .store-badges {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .store-image-button {
+      display: block;
+      width: 180px;
+      max-width: 46%;
+      padding: 0;
+      overflow: hidden;
+      border: 0;
+      border-radius: 8px;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .store-image-button img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .store-image-button:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 3px;
+    }
+
+    .notice {
+      position: fixed;
+      z-index: 10;
+      left: 50%;
+      bottom: 16px;
+      transform: translateX(-50%);
+      max-width: calc(100vw - 24px);
+      padding: 10px 14px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 3px 16px rgb(0 0 0 / 12%);
+      color: #222;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .notice[hidden] { display: none; }
+
+    /* Mise en page mobile */
+    @media (max-width: 760px) {
+      .page {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .login-panel {
+        width: 100%;
+        min-height: 100vh;
+        padding: 24px clamp(22px, 8vw, 54px) 22px;
+      }
+
+      .logo { width: min(220px, 75%); }
+
+      .form-area {
+        margin-top: 22px;
+        margin-bottom: 0;
+        padding-top: 18px;
+      }
+
+      h1 {
+        margin-bottom: 24px;
+        font-size: 32px;
+      }
+
+      .field {
+        height: 58px;
+        margin-bottom: 22px;
+      }
+
+      .password-wrap .field { margin-bottom: 9px; }
+      .eye-button { top: 13px; }
+
+      .remember { margin-top: 6px; font-size: 16px; }
+      .submit-button { height: 52px; font-size: 22px; }
+      .help-tab { display: none; }
+
+      .promo-panel {
+        min-height: 220px;
+        padding: 34px 18px;
+      }
+
+      .promo-title { margin-bottom: 20px; font-size: 19px; }
+      .store-image-button { width: 165px; max-width: 48%; }
+      .legal { font-size: 14px; }
+    }
+
+    @media (max-width: 360px) {
+      .login-panel { padding-right: 18px; padding-left: 18px; }
+      .store-image-button { width: 145px; }
+    }
+
+    @media (max-height: 760px) and (min-width: 761px) {
+      .login-panel { padding-top: 22px; padding-bottom: 18px; }
+      .logo { width: 210px; }
+      .form-area { padding-top: 28px; }
+      .field { height: 56px; margin-bottom: 20px; }
+      .password-wrap .field { margin-bottom: 8px; }
+      .help-tab { height: 240px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="login-panel" aria-label="Formulaire de démonstration">
+      <div class="brand">
+        <!-- Place logo.jpg dans le même dossier que index.html -->
+        <img class="logo" src="logo.jpg" alt="Logo de la maquette">
+      </div>
+
+      <button class="help-tab" type="button"
+        data-message="Aide indisponible dans cette maquette locale.">
+        PROBLÈME DE CONNEXION ?
+      </button>
+
+      <form class="form-area" id="demo-form">
+        <h1>Connectez-vous</h1>
+
+        <input
+          class="field"
+          name="username"
+          type="text"
+          autocomplete="off"
+          placeholder="Identifiant de démonstration"
+          aria-label="Identifiant de démonstration"
+        >
+
+        <div class="password-wrap">
+          <input
+            class="field"
+            id="password"
+            name="password"
+            type="password"
+            autocomplete="new-password"
+            placeholder="Mot de passe fictif"
+            aria-label="Mot de passe fictif"
+          >
+          <button
+            class="eye-button"
+            type="button"
+            id="toggle-password"
+            aria-label="Afficher ou masquer le mot de passe"
+            title="Afficher ou masquer le mot de passe"
+          >◉</button>
+        </div>
+
+        <a class="forgot" href="#" data-message="Lien désactivé dans cette maquette.">
+          Mot de passe oublié ?
+        </a>
+
+        <label class="remember">
+          <input type="checkbox" name="remember">
+          <span>Se souvenir de moi</span>
+        </label>
+
+        <button class="submit-button" type="submit">Connexion</button>
+
+        <div class="legal">
+          <a href="#" data-message="Mentions légales de démonstration.">Mentions légales</a>
+          <div class="indent">
+            <a href="#" data-message="Informations d’accessibilité de démonstration.">
+              Accessibilité : partiellement conforme
+            </a>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <section class="promo-panel" aria-label="Panneau promotionnel de démonstration">
+      <div class="promo-content">
+        <h2 class="promo-title">Retrouvez EcoleDirecte aussi sur votre mobile</h2>
+        <div class="store-badges">
+          <button class="store-image-button" type="button"
+            data-message="Boutique Google Play non ouverte dans cette maquette.">
+            <img src="playstore.jpg" alt="Disponible sur Google Play">
+          </button>
+          <button class="store-image-button" type="button"
+            data-message="Boutique App Store non ouverte dans cette maquette.">
+            <img src="appstore.jpg" alt="Télécharger dans l’App Store">
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="notice" id="notice" role="status" aria-live="polite">
+    Maquette locale : aucune donnée n’est envoyée ni enregistrée.
+  </div>
+
+  <script>
+    const form = document.getElementById('demo-form');
+    const passwordInput = document.getElementById('password');
+    const togglePasswordButton = document.getElementById('toggle-password');
+    const notice = document.getElementById('notice');
+    let noticeTimer;
+
+    function showNotice(message) {
+      notice.textContent = message;
+      notice.hidden = false;
+      window.clearTimeout(noticeTimer);
+      noticeTimer = window.setTimeout(() => {
+        notice.hidden = true;
+      }, 3200);
+    }
+
+    togglePasswordButton.addEventListener('click', () => {
+      const isHidden = passwordInput.type === 'password';
+      passwordInput.type = isHidden ? 'text' : 'password';
+      togglePasswordButton.setAttribute(
+        'aria-label',
+        isHidden ? 'Masquer le mot de passe' : 'Afficher le mot de passe'
+      );
+      showNotice(isHidden ? 'Mot de passe affiché localement.' : 'Mot de passe masqué.');
+    });
+
+    // Empêche toute navigation ou transmission : Entrée et clic ont le même effet.
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      showNotice('Démo uniquement : aucune connexion n’a été tentée et aucune donnée n’a été envoyée.');
+    });
+
+    document.querySelectorAll('[data-message]').forEach((element) => {
+      element.addEventListener('click', (event) => {
+        event.preventDefault();
+        showNotice(element.getAttribute('data-message'));
+      });
+    });
+  </script>
+</body>
+</html>
